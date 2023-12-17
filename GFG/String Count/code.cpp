@@ -1,31 +1,35 @@
+// factorial upto 2
+long long factorial(long long n) {
+    if(n == 0 || n == 1) return 1;
+    if(n == 2) return 2;
+}
 
+// multiply from start to end
+long long mul(long long start, long long end) {
+    long long ans = 1;
+    for(long long num = start; num<= end; num++) {
+        ans *= num;
+    }
+    return ans;
+}
+
+//
 long long int countStr(long long int n){
     //complete the function here
     long long ans = 0;
 
-    for(int i = 0; i < 2; i++){
-        for(int j = 0; j < 3; j++){
-            if(i + j > n)
-                continue;
-
-            long long curans = 1;
-
-            long long total = n;
-            if(j == 2){
-                curans = (total * (total - 1)) / 2;
-                total -= 2;
+    for(long long i = 0; i <= 1; i++) {
+        for(long long j = 0; j <= 2; j++) {
+            long long start = n-i-j+1;
+            long long end = n;
+            long long current = 0;
+            if(start <= end) {
+                current = mul(start,end)/factorial(j);
             }
-            else if(j){
-                curans = total;
-                --total;
-            }
-
-            if(i)
-                curans *= total;
-
-            ans += curans;
+            ans += current;
+            //   cout << "i, j , cuurent" << i << ", " << j << ", " << current << endl;
         }
     }
 
-    return ans;
+    return ans+1;
 }
